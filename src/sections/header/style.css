@@ -1,0 +1,7 @@
+.bgImage{
+    background-image: url("../../../public/images/logo.png");
+    width: 12%; 
+    height: 4rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
