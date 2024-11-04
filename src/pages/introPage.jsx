@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import AnswerdCard from '../component/answerCard';
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, Button, Avatar } from '@mui/material';
 import Header from '../sections/header';
 import { withNavigate } from '../component/navigation/navigator';
 import questions from '../data/questions';
-
+import "./style.css"
 class IntroPage extends Component {
   constructor(props) {
     super(props);
@@ -65,39 +65,53 @@ class IntroPage extends Component {
     if (!currentQuestion) return null;
 
     return (
-      <div>
-        <Header />
+      <Box mx={2}>
+        {/* <Header /> */}
 
-        <Box textAlign="center">
-          <Typography fontWeight="bold" variant="h4" mt={5}>
-            {currentQuestion.question}
-          </Typography>
-          <Typography color="text.secondary">
-            {currentQuestion.slogan}
-          </Typography>
+        <Box textAlign="left">
+          
+            <Box sx={{display: "flex", justifyContent:"space-between", mt:5,}}>
+              <Box mr={2}sx={{width:"70%", height:85}}>
+              <Typography color="text.secondary" >
+              {currentQuestion.slogan}</Typography>
+                <Typography fontWeight="bold" fontSize={20} color='#0D1B34' >
+                {currentQuestion.question}
+            </Typography>
+              </Box>
+            
+            <Box className= "avatarImage">
+            </Box>
+            
+          </Box>
+          
+          
 
           <Box my={5} display="flex" justifyContent="center" width="100%">
-            <Grid
-              container
-              spacing={2}
-              justifyContent="center" // Center the Grid items
-              style={{ width: '70%' }} // Set a width for the Grid container
-            >
-              {currentQuestion.subQuestions.map((q, index) => (
-                <Grid item key={index}> {/* Adjusted to control item size */}
-                  <AnswerdCard
-                    isSelected={selectedCard === index}
-                    onClick={() => this.handleCardSelect(index)}
-                    title={q.title}
-                    subTitle={q.subTitle}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        </Box>
+  <Grid
+    container
+    spacing={4}
+    justifyContent="center"
+    sx={{ width: '100%' }} // Ensures the container fills the parent width
+  >
+    {currentQuestion.subQuestions.map((q, index) => (
+      <Grid 
+        item 
+        key={index}
+        sx={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <AnswerdCard
+          isSelected={selectedCard === index}
+          onClick={() => this.handleCardSelect(index)}
+          title={q.title}
+          subTitle={q.subTitle}
+        />
+      </Grid>
+    ))}
+  </Grid>
+</Box>
+</Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }} width="70%" mx="auto" my={2}>
+        {/* <Box sx={{ display: "flex", justifyContent: "space-between" }} width="100%" mx="auto" my={2}>
           {this.state.previousChoices.length > 0 && (
             <Button variant="text" color="primary" onClick={this.handleBackward}>
               Back
@@ -108,8 +122,8 @@ class IntroPage extends Component {
               Finish
             </Button>
           ) : null}
-        </Box>
-      </div>
+        </Box> */}
+      </Box>
     );
   }
 }
